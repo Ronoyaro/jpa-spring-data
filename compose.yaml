@@ -1,0 +1,14 @@
+services:
+  mysql:
+    image: mysql:9.0.1
+    container_name: mysql_jpa
+    environment:
+      MYSQL_ROOT_PASSWORD: dev_jpa
+      MYSQL_USER: ronoyaro
+      MYSQL_PASSWORD: dev
+    ports:
+      - "3306:3306"
+    volumes:
+      - jpa_db:/var/lib/mysql
+volumes:
+  jpa_db:
