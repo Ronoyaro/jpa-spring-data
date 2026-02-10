@@ -12,9 +12,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(onlyExplicitlyIncluded = true)
 public class Autor implements Serializable {
     @Id
     @EqualsAndHashCode.Include
+    @ToString.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_autor", nullable = false)
     private Long id;
@@ -25,4 +27,7 @@ public class Autor implements Serializable {
     @Column(name = "lastname", length = 45, nullable = false)
     private String lastName;
 
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @JoinColumn(name = "id_info")
+    private InfoAutor infoAutor;
 }
